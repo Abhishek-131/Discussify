@@ -1,0 +1,39 @@
+body {
+  background-color: #808891;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+.navbar .btn {
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.95rem;
+}
+
+.navbar-light .navbar-toggler {
+  border: none;
+}
+
+.navbar-light .navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar .fw-semibold {
+  font-size: 0.95rem;
+}
+
+@media (max-width: 992px) {
+  .navbar .btn {
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  .navbar .fw-semibold {
+    text-align: center;
+    display: block;
+    margin-bottom: 8px;
+  }
+}

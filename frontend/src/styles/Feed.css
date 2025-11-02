@@ -1,0 +1,53 @@
+.feed-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+}
+.feed-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feed-title {
+  font-weight: 600;
+  color: #0d6efd;
+  margin-bottom: 0.5rem;
+}
+.feed-desc {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+.feed-media {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+  display: block;
+  background: #f8f9fa;
+}
+
+/* ✅ Clear, visible clickable link section */
+.link-box {
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+.link-text {
+  font-weight: 600;
+  color: #0d6efd;
+  text-decoration: none;
+  word-break: break-all;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.link-text:hover {
+  text-decoration: underline;
+  color: #084298;
+}
+.btn-danger.btn-sm {
+  padding: 0.3rem 0.5rem;
+  font-size: 0.8rem;
+}

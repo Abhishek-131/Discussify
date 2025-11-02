@@ -1,0 +1,13 @@
+body {
+  background: #676a6d;
+  color: #d4d1cb;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.container .card {
+  margin-top: 40px;
+}
