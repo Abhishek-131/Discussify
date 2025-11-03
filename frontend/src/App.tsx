@@ -14,7 +14,14 @@ import Home from "./pages/Home";
 
 import AdminPanel from "./admin/AdminPanel";
 
+
+
+
 const App: React.FC = () => {
+
+
+  
+
   return (
     <Router>
       <Navbar />
@@ -45,6 +52,7 @@ const App: React.FC = () => {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/upload-avatar"
           element={
@@ -53,6 +61,7 @@ const App: React.FC = () => {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/communities"
           element={

@@ -1,19 +1,20 @@
 import Discussion from "../models/Discussion.js";
 import Community from "../models/Community.js";
+import Notification from "../models/Notification.js"; // ✅ import
 
-// 🟢 Create a discussion
+// POST /api/v1/discussions/:communityId
 export const createDiscussion = async (req, res) => {
   try {
     const { title, content } = req.body;
-    if (!title || !content)
-      return res.status(400).json({ error: "Title and content are required" });
-
     const communityId = req.params.communityId;
+
+    if (!title || !content) return res.status(400).json({ error: "Title and content are required" });
+
     const community = await Community.findById(communityId);
     if (!community) return res.status(404).json({ error: "Community not found" });
 
     // Only members can post
-    if (!community.members.includes(req.user._id)) {
+    if (!community.members.some((m) => m.toString() === req.user._id.toString())) {
       return res.status(403).json({ error: "You must be a member to post" });
     }
 
@@ -24,12 +25,25 @@ export const createDiscussion = async (req, res) => {
       author: req.user._id,
     });
 
-    const populated = await Discussion.findById(discussion._id).populate(
-      "author",
-      "email username"
+    // ✅ Send notifications to all members except the creator
+    const otherMembers = community.members.filter(
+      (m) => m.toString() !== req.user._id.toString()
     );
 
-    res.status(201).json({ message: "Discussion created", discussion: populated });
+    const message = `🗣️ New discussion "${title}" in "${community.name}"`;
+    const link = `/communities/${communityId}/discussions/${discussion._id}`;
+
+    const notifications = otherMembers.map((userId) => ({
+      user: userId,
+      message,
+      link,
+    }));
+
+    if (notifications.length > 0) {
+      await Notification.insertMany(notifications);
+    }
+
+    res.status(201).json({ message: "Discussion created", discussion });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
